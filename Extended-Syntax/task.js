@@ -14,9 +14,11 @@ function getResult(a, b, c) {
     // код для задачи №1 писать здесь
     let x = [];
     const D = b ** 2 - 4 * a * c;
-    if (D < 0) x.push("Корней нет");
-    else if (!D) x.push(-b / (2 * a));
-    else x.push((-b + Math.sqrt(D)) / (2 * a), (-b - Math.sqrt(D)) / (2 * a));
+    if (!D) {
+        x.push(-b / (2 * a));
+    } else {
+        x.push((-b + Math.sqrt(D)) / (2 * a), (-b - Math.sqrt(D)) / (2 * a));
+    }
 
     return x;
 }
@@ -30,9 +32,13 @@ function calculateAverageRating() {
 function getAverageMark(marks) {
     // код для задачи №2 писать здесь
     let totalMarkSum = 0;
-    if (marks.length > 5) marks = marks.slice(0, 5);
+    if (marks.length > 5) {
+        marks = marks.slice(0, 5);
+    }
     console.log(`Длина массива ${marks.length}`);
-    for (let mark of marks) totalMarkSum += mark;
+    for (let mark of marks) {
+        totalMarkSum += mark;
+    }
     return totalMarkSum / marks.length;
 }
 
@@ -49,8 +55,11 @@ function askDrink(name, dateOfBirthday) {
     let currentDate = new Date();
     let age = (currentDate - dateOfBirthday) / 31536000000;
     console.log(age);
-    if (age < 18) result = `Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`;
-    else result = `Не желаете ли олд-фэшн, ${name}?`;
+    if (age < 18) {
+        result = `Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`;
+    } else {
+        result = `Не желаете ли олд-фэшн, ${name}?`;
+    }
     console.log(result);
     return result;
 }

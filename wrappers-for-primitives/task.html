@@ -6,20 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Обертки для примитивов</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
     <script src="task.js"></script>
 </head>
 
 <body>
-    <input type="text" placeholder="Процентная ставка" id="percent"><br><br>
-    <input type="text" placeholder="Начальный взнос" id="contribution"><br><br>
-    <input type="text" placeholder="Общая стоимость" id="amount"><br><br>
-    <label>Срок ипотеки <input type="date" id="date"></label><br><br>
-    <button onClick="calculateMortgage()">Посчитать общую стоимость ипотеки</button>
-    <span id="mortageResult"></span>
-    <hr>
-    <label>Введите ваше имя: <input type="text" placeholder="Имя" id="personName"></label><br><br>
-    <button onClick="sayHello()">Поздороваться</button>
-    <span id="helloResult"></span>
+    <div class="container">
+        <input class="input_style" type="text" placeholder="Процентная ставка" id="percent">
+        <input class="input_style" type="text" placeholder="Начальный взнос" id="contribution">
+        <input class="input_style" type="text" placeholder="Общая стоимость" id="amount">
+        <input class="input_style" type="text" placeholder="Срок ипотеки (месяцев)" id="date">
+        <button class="input_style" onClick="calculateMortgage()">Посчитать общую стоимость ипотеки</button>
+        <span id="mortageResult"></span>
+    </div>
+    <div class="container">
+        <label for="personName">Введите ваше имя:</label><br>
+        <input class="input_style" type="text" placeholder="Имя" id="personName">
+        <button class="input_style" onClick="sayHello()">Поздороваться</button>
+        <span id="helloResult"></span>
+    </div>
 </body>
 
 </html>

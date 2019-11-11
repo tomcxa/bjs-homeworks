@@ -21,7 +21,7 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
         contribution,
         amount,
         date
-    };   
+    };
     for (let key in args) {
         console.log(isNaN(args[key]));
         if (isNaN(args[key]) || args[key] < 0) {
@@ -51,7 +51,10 @@ function sayHello() {
 
 function getGreeting(name) {
     let input = name;
-    if (!name || Number.isNaN(name)) {
+    if (name != null && typeof name !== "undefined") {
+        name = name.trim();
+    }
+    if (!name) {
         name = "Аноним";
     } else {
         name = name[0].toUpperCase() + name.substring(1);

@@ -16,10 +16,9 @@ function getResult(a, b, c) {
     const D = b ** 2 - 4 * a * c;
     if (!D) {
         x.push(-b / (2 * a));
-    } else {
+    } else if (D > 0) {
         x.push((-b + Math.sqrt(D)) / (2 * a), (-b - Math.sqrt(D)) / (2 * a));
     }
-
     return x;
 }
 

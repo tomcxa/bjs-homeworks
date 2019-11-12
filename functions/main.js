@@ -6,7 +6,7 @@ function getSolutions(a, b, c) {
         return {
             D
         }
-    } else if (!D) {
+    } else if (D === 0) {
         let x1 = -b / (2 * a);
         return {
             D,

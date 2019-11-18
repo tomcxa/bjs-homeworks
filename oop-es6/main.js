@@ -15,7 +15,9 @@ class Weapon {
 
     getDamage() {
         if (this.durability === 0) return 0;
-        return (this.durability >= (this.durability / 100 / 30) ? this.attack : this.attack / 2);
+        const lowDurability = this.durability / 100 / 30; //отдельные переменные чтобы легче читалось
+        const isLowDurability = !(this.durability >= lowDurability); //отдельные переменные чтобы легче читалось
+        return (isLowDurability ? this.attack / 2 : this.attack);
     }
 
     isBroken() {
@@ -225,26 +227,28 @@ class StudentLog {
         if (grade >= 1 && grade <= 5) {//проверка на корректность поставленной оценки
             if (subject in this.data) {// если поле объекта существует
                 this.data[subject].push(grade); // заполняем его новым значением
-            } else {//если не существует
+            } else {//если поле объекта не существует
                 this.data[subject] = [grade];//создаем поле с начальным значением
             }
         } else {//сообщаем об ошибке ввода, если данные введены не верно
             console.log(`Вы пытались поставить оценку ${grade} по предмету ${subject}.
-            Допускаются только числа от 1 до 5`)
+            Допускаются только числа от 1 до 5`);
         }       
         return (subject in this.data) ? this.data[subject].length : 0; //возвращаем кол-во оценок по данному предмету если они существуют
     }
 
     getAverageBySubject(subject) {
-        return (subject in this.data) ?
-        (this.data[subject].reduce((start, current) => start + current) / this.data[subject].length) : 0;
+        if (!(subject in this.data)) return 0;
+        const sum = this.data[subject].reduce((start, current) => start + current);
+        const average = sum / this.data[subject].length;
+        return average;
     }
 
     getTotalAverage() {
         let totalAverage = 0;
         let count = 0;
         for (let prop in this.data) {
-            let averageBySubject = this.getAverageBySubject(prop);
+            const averageBySubject = this.getAverageBySubject(prop);
             totalAverage += averageBySubject;
             count++;
         }

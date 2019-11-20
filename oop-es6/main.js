@@ -4,6 +4,7 @@ class Weapon {
     constructor({ name, attack, durability, range }) {
         this.name = name;
         this.attack = attack;
+        this.maxDurability = durability;
         this.durability = durability;
         this.range = range;
     }
@@ -15,13 +16,17 @@ class Weapon {
 
     getDamage() {
         if (this.durability === 0) return 0;
-        const lowDurability = this.durability / 100 / 30; //отдельные переменные чтобы легче читалось
+        const lowDurability = this.maxDurability * 30 / 100; //отдельные переменные чтобы легче читалось
         const isLowDurability = !(this.durability >= lowDurability); //отдельные переменные чтобы легче читалось
         return (isLowDurability ? this.attack / 2 : this.attack);
     }
 
     isBroken() {
         return (this.durability <= 0);
+    }
+
+    repair() {
+        return this.durability = this.maxDurability;
     }
 }
 
@@ -38,6 +43,9 @@ console.log(sword.durability); // 5
 
 sword.takeDamage(50);
 console.log(sword.durability); // 0
+
+sword.repair();
+console.log(sword.durability); // 10
 
 const arm = new Weapon({
     name: 'Рука',

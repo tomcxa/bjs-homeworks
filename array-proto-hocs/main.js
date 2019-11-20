@@ -11,16 +11,16 @@ console.log(compareArrays([8, 9], [6]), compareArrays([8, 9, 5, 4], [8, 9, 5, 4,
 
 function memoize(fn, limit) {
     const results = [];
-    limit = (limit > 10) ? 10 : limit;
+    limit = (limit > 10) ? 10 : limit; //не более 10 записей
     return (...args) => {
         const inMemory = results.find(el => compareArrays(el.args, args));
         if (inMemory) {//если запись уже есть достаем значение из памяти
             console.log('Pезультат берётся из памяти');
             return inMemory.result;
         } else {//иначе вычисляем результат
-            if (results.length == limit) {//для экономии места сначала удаляем первый элемент
+            if (results.length == limit) {//проверяем не превышен ли лимит
                 console.log('Лимит превышен, удаляем самый старый элемент');
-                results.shift();
+                results.shift();//для экономии места сначала удаляем первый элемент
             }
             console.log('Pезультат вычисляется');
             const result = fn(...args);
@@ -30,11 +30,11 @@ function memoize(fn, limit) {
     }
 }
 
-const sum = (...args) => args.reduce((start, current) => start + current);
+const sum = (...args) => args.reduce((start, current) => start + current); //считаем сумму для любого кол-ва аргументов
 
-const mSum = memoize(sum, 11); // 2 результата хранятся в памяти
+const mSum = memoize(sum, 11); // 11 результатов хранятся в памяти
 
-// Вызов этих функций даёт один и тот же результат
+// Тест
 console.log(mSum( 1, 3 )); 
 console.log(mSum( 1, 3, 1 )); 
 console.log(mSum( 1, 3, 1, 2 ));

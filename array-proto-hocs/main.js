@@ -1,7 +1,10 @@
 'use strict';
 
+// function compareArrays(arr1, arr2) {
+//     return (arr1.length === arr2.length) && (arr1.join() === arr2.join());
+// }
 function compareArrays(arr1, arr2) {
-    return (arr1.length === arr2.length) && (arr1.join() === arr2.join());
+    return Object.keys(arr1).length === Object.keys(arr2).length && Object.keys(arr1).every(e => arr2[e] === arr1[e]);
 }
 
 console.log(compareArrays([8, 9], [6]), compareArrays([8, 9, 5, 4], [8, 9, 5, 4, 8, 3, 5]), // false, разные значения
@@ -24,7 +27,7 @@ function memoize(fn, limit) {
             }
             console.log('Pезультат вычисляется');
             const result = fn(...args);
-            results.push({args, result});//затем добавляем новый
+            results.push({ args, result });//затем добавляем новый
             return result;
         }
     }
@@ -35,17 +38,17 @@ const sum = (...args) => args.reduce((start, current) => start + current); //с�
 const mSum = memoize(sum, 11); // 11 результатов хранятся в памяти
 
 // Тест
-console.log(mSum( 1, 3 )); 
-console.log(mSum( 1, 3, 1 )); 
-console.log(mSum( 1, 3, 1, 2 ));
-console.log(mSum( 1, 1 ));
-console.log(mSum( 1, 1, 1, 1 ));
-console.log(mSum( 1, 1, 1, 1));
-console.log(mSum( 1, 9  ));
-console.log(mSum( 1, 3 ));
-console.log(mSum( 1, 8 ));
-console.log(mSum( 1, 7  ));
-console.log(mSum( 1, 5 ));
-console.log(mSum( 1, 2 ));
-console.log(mSum( 1, 3, 9 ));
-console.log(mSum( 1, 3, 99 ));
+console.log(mSum(1, 3));
+console.log(mSum(1, 3, 1));
+console.log(mSum(1, 3, 1, 2));
+console.log(mSum(1, 1));
+console.log(mSum(1, 1, 1, 1));
+console.log(mSum(1, 1, 1, 1));
+console.log(mSum(1, 9));
+console.log(mSum(1, 3));
+console.log(mSum(1, 8));
+console.log(mSum(1, 7));
+console.log(mSum(1, 5));
+console.log(mSum(1, 2));
+console.log(mSum(1, 3, 9));
+console.log(mSum(1, 3, 99));
